@@ -43,7 +43,7 @@ class _ClockWidgetState extends State<ClockWidget> {
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
-      height: 550,
+      height: 510,
       width: 400,
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
