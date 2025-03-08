@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "645367763226",
+    "project_id": "ftfl-dashboard",
+    "storage_bucket": "ftfl-dashboard.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645367763226:android:d35536f3285ae454e09ca3",
+        "android_client_info": {
+          "package_name": "com.example.ftfl_dashboard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN7jn6z0-k2On5Ijzimb63iULsI7AHFo0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
