@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ftfl_dashboard/custom_widget/custom_hw.dart';
-import '../../../custom_widget/custom_textstyle.dart';
+import 'package:ftfl_dashboard/app_widget/custom_hw.dart';
+import '../../../app_widget/custom_textstyle.dart';
+
 
 class CustomDrawer extends StatelessWidget {
   @override
@@ -27,20 +28,20 @@ class CustomDrawer extends StatelessWidget {
                         backgroundImage: AssetImage('assets/images/akshay.jpg'),
                       ),
                       SizedBox(height: 10),
-                      Text("Akshay Panika", style: textStyle20(color: Colors.black),),
-                      Text("App Developer", style: textStyle14(color: Colors.black),),
+                      Text("Akshay Panika", style: textStyle20(context,color: Colors.black),),
+                      Text("App Developer", style: textStyle14(context,color: Colors.black),),
                     ],
                   ),
                 ),
               ),
               ListTile(
                 leading: Icon(Icons.dashboard),
-                title: Text("Dashboard", style: textStyle14()),
+                title: Text("Dashboard", style: textStyle14(context,)),
                 onTap: () {},
               ),
               ListTile(
                 leading: Icon(Icons.person_add),
-                title: Text("Employee", style: textStyle14()),
+                title: Text("Employee", style: textStyle14(context,)),
                 onTap: () {},
               ),
             ],
@@ -51,12 +52,12 @@ class CustomDrawer extends StatelessWidget {
             children: [
               ListTile(
                 leading: Icon(Icons.settings),
-                title: Text("Settings", style: textStyle14()),
+                title: Text("Settings", style: textStyle14(context,)),
                 onTap: () {},
               ),
               ListTile(
                 leading: Icon(Icons.logout),
-                title: Text("Log Out", style: textStyle14()),
+                title: Text("Log Out", style: textStyle14(context,)),
                 onTap: () {},
               ),
               50.height

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ftfl_dashboard/custom_widget/custom_hw.dart';
+import 'package:ftfl_dashboard/app_widget/custom_hw.dart';
 import 'custom_textstyle.dart';
 
 void showCustomDialog(BuildContext context) {
@@ -15,16 +15,16 @@ void showCustomDialog(BuildContext context) {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text("Please wait", style: textStyle16()),
+              Text("Please wait", style: textStyle16(context,)),
               16.height,
-              Text("Dear customer please wait sum time!", style: textStyle14(color: Colors.grey),),
+              Text("Dear customer please wait sum time!", style: textStyle14(context,color: Colors.grey),),
 
               16.height,
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    child: Text("Close",style: textStyle14(fontWeight: FontWeight.w700, color: Colors.blue),),
+                    child: Text("Close",style: textStyle14(context,fontWeight: FontWeight.w700, color: Colors.blue),),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 ],

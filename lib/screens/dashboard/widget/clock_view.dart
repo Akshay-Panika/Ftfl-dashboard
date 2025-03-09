@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:ftfl_dashboard/core/theme.dart';
 import 'dart:async';
 
-import '../../../custom_widget/custom_container.dart';
-import '../../../custom_widget/custom_textstyle.dart';
+import '../../../app_widget/custom_container.dart';
+import '../../../app_widget/custom_textstyle.dart';
+import '../../../app_widget/dimands.dart';
+
 
 class ClockWidget extends StatefulWidget {
   @override
@@ -42,15 +45,15 @@ class _ClockWidgetState extends State<ClockWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomContainer(
-      height: 510,
-      width: 400,
-      padding: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: Colors.white,
-        border: Border.all(color: Colors.grey.shade400),
-      ),
+    Demands demands = Demands(context);
+    return customContainer(
+       bRadius: demands.screenHeight*0.01,
+       width: demands.screenWidth > 600 ? demands.screenWidth*0.25:double.infinity,
+       hMargin: demands.screenWidth*0.01,
+       vMargin: demands.screenWidth*0.01,
+       vPadding: demands.screenWidth*0.05,
+      borderColor: customColor.borderColor,
+      shadowColor: Colors.transparent,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -58,9 +61,9 @@ class _ClockWidgetState extends State<ClockWidget> {
           /// Dynamic Clock View
           Text(
             _currentTime,
-            style: textStyle22(fontWeight: FontWeight.w600),
+            style: textStyle22(context,fontWeight: FontWeight.w600),
           ),
-          Text('Current Time', style: textStyle14()),
+          Text('Current Time', style: textStyle14(context,)),
         ],
       ),
     );

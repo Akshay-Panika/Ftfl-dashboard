@@ -1,9 +1,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ftfl_dashboard/custom_widget/custom_hw.dart';
-import '../../custom_widget/custom_colors.dart';
-import '../../custom_widget/custom_textstyle.dart';
+import 'package:ftfl_dashboard/app_widget/custom_container.dart';
+import 'package:ftfl_dashboard/app_widget/custom_hw.dart';
+import '../../app_widget/custom_colors.dart';
+import '../../app_widget/custom_textstyle.dart';
+import '../../app_widget/dimands.dart';
+import '../../core/theme.dart';
 import 'contant/dashboard.dart';
 import 'contant/drawer.dart';
 import 'contant/emoloyee.dart';
@@ -19,8 +22,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    Dashboard(),
     Employee(),
+    Dashboard(),
   ];
 
   void _onMenuTap(int index) {
@@ -32,71 +35,70 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size;
+    Demands demands = Demands(context);
+
 
     return Scaffold(
-      backgroundColor: CustomColor.backColor,
+      backgroundColor: customColor.backgroundColor,
 
       /// Appbar
       appBar: AppBar(
-        toolbarHeight: 80,
+        toolbarHeight: demands.screenHeight*0.085,
         backgroundColor: Colors.white,
-        shape: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.5)),
+        shape: UnderlineInputBorder(borderSide: BorderSide(color: customColor.borderColor, width: 0.5)),
         title: Padding(
           padding: const EdgeInsets.all(20),
-          child: Text(
-            "FTFL Technology",
-            style: textStyle20(color: Colors.blue.shade900),
-          ),
+          child: Text("FTFL Technology", style: textStyle20(context,color: Colors.blue.shade900)),
         ),
         actions: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Akshay Panika",
-                style: textStyle12(fontWeight: FontWeight.w600),
+              Text("Akshay Panika", style: textStyle12(context,fontWeight: FontWeight.w600),
               ),
               Text(
                 "App Developer",
-                style: textStyle14(fontWeight: FontWeight.w600, color: Colors.grey),
+                style: textStyle12(context, color: Colors.grey),
               ),
             ],
           ),
           10.width,
           CircleAvatar(
-            radius: 30,
+            radius: demands.screenHeight*0.035,
             backgroundImage: AssetImage('assets/images/akshay.jpg'),
           ),
           50.width
         ],
       ),
 
-      drawer: screenWidth.width > 500 ? null : CustomDrawer(),
+      ///  CustomDrawer
+      drawer: demands.screenWidth > 600 ? null : CustomDrawer(),
 
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           /// Side Menu
-          screenWidth.width > 500
+          demands.screenWidth > 600
               ? Expanded(
             flex: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border(right: BorderSide(color: Colors.grey, width: 0.5))),
+            child: customContainer(
+              bRadius: 0,
+              borderColor: customColor.borderColor,
+              shadowColor: Colors.transparent,
               child:  Column(
                 children: [
-                  ExpansionTile(shape: InputBorder.none,
-                    title: Text('Dashboard',),
+
+                  /// Dashboard
+                  ListTile(
                     leading: Icon(Icons.dashboard),
-                    iconColor: Colors.black,
-                    expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                    title: Text('Dashboard',),
                     trailing: Icon(Icons.arrow_forward_ios, size: 16,),
-                    onExpansionChanged: (value) =>  _onMenuTap(0),
+                    onTap: () => _onMenuTap(0),
                   ),
+
+                 /// Employees
                   ExpansionTile(shape: InputBorder.none,
                     title: Text('Employees',),
                     leading: Icon(Icons.person),
@@ -114,11 +116,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
           )
               : SizedBox(),
 
-          /// Main Content
-          Expanded(
-            flex: 5,
-            child: _screens[_selectedIndex],
-          ),
+          ///  Dashboard
+          Expanded(flex: 5, child: _screens[_selectedIndex],),
         ],
       ),
     );
