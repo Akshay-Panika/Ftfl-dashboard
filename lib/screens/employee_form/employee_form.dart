@@ -78,8 +78,8 @@ class _EmployeeFormState extends State<EmployeeForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               20.height,
-              Center(child: Text('Register Employees', style: textStyle16(context, fontWeight: FontWeight.w500),),
-              ),
+              Center(child: Text('Register Employees', style: textStyle16(context, fontWeight: FontWeight.w500),),),
+              20.height,
               Text('Employee Id, 01', style: textStyle14(context, fontWeight: FontWeight.w500),),
             
             
@@ -135,7 +135,7 @@ class _EmployeeFormState extends State<EmployeeForm> {
                ),
              ),
               SizedBox(
-                height: demands.screenWidth>600?demands.screenHeight*0.09:demands.screenHeight * 0.15,
+                height: demands.screenWidth>600?demands.screenHeight*0.09:demands.screenHeight * 0.18,
                 child: Flex(
                  direction: demands.screenWidth>600?Axis.horizontal:Axis.vertical,
                  children: [
@@ -148,16 +148,15 @@ class _EmployeeFormState extends State<EmployeeForm> {
                            child: Column(
                              crossAxisAlignment: CrossAxisAlignment.start,
                              children: [
-                               demands.screenWidth>600?
-                               Text('Gender', style: textStyle14(context,fontWeight: FontWeight.w400))
-                               :10.height,
+                               10.height,
+                               Text('Gender', style: textStyle14(context,fontWeight: FontWeight.w400)),
                                Row(
                                  children: [
                                    Radio(
                                      value: 1,
                                      groupValue: _selectedGender,
                                      onChanged: (value) {
-                                       setState(() {_selectedGender = value as int?;});
+                                       setState(() {_selectedGender = value;});
                                      },
                                    ),
                                    Text("Male", style: textStyle14(context,fontWeight: FontWeight.w400)),
@@ -167,7 +166,7 @@ class _EmployeeFormState extends State<EmployeeForm> {
                                      groupValue: _selectedGender,
                                      onChanged: (value) {
                                        setState(() {
-                                         _selectedGender = value as int?;
+                                         _selectedGender = value;
                                        });
                                      },
                                    ),
@@ -177,14 +176,13 @@ class _EmployeeFormState extends State<EmployeeForm> {
                              ],
                            ),
                          ),
-            
+
                          Expanded(
                            child: Column(
                              crossAxisAlignment: CrossAxisAlignment.start,
                              children: [
-                               demands.screenWidth>600?
-                               Text('Marital Status', style: textStyle14(context,fontWeight: FontWeight.w400))
-                               :10.height,
+                               10.height,
+                               Text('Marital Status', style: textStyle14(context,fontWeight: FontWeight.w400)),
                                Row(
                                  children: [
                                    Radio(
@@ -281,7 +279,7 @@ class _EmployeeFormState extends State<EmployeeForm> {
                    containerColor: Colors.black,
                    vPadding: demands.screenWidth*0.002,
                    hPadding: demands.screenWidth*0.03,
-                   vMargin: demands.screenWidth*0.02,
+                   vMargin: demands.screenHeight*0.05,
                    child: Text('Save Data', style: textStyle14(context, color: Colors.white),)),
              )
             ],
