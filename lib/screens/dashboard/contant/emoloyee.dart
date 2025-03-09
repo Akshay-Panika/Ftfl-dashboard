@@ -4,9 +4,6 @@ import 'package:ftfl_dashboard/app_widget/custom_container.dart';
 import 'package:ftfl_dashboard/app_widget/custom_hw.dart';
 import 'package:ftfl_dashboard/app_widget/custom_text_form_field.dart';
 import 'package:ftfl_dashboard/core/theme.dart';
-import '../../../app_widget/custom_card.dart';
-import '../../../app_widget/custom_decoration.dart';
-import '../../../app_widget/custom_text_padding.dart';
 import '../../../app_widget/custom_textstyle.dart';
 import '../../../app_widget/dimands.dart';
 import '../../employee_form/employee_form.dart';
@@ -72,10 +69,11 @@ class _EmployeeState extends State<Employee> {
                   child: CustomTextFormField(
                       hintText: 'Search employee',
                       keyboardType: TextInputType.text,
-                      suffixIcon: demands.screenWidth > 600 ?CupertinoIcons.search:null,
+                      suffixIcon: demands.screenWidth > 600 ?_addEmployee?CupertinoIcons.clear:CupertinoIcons.search:null,
                     controller: _searchController,
                     onChanged: _filterEmployees,
                     showBorder: false,
+                    readOnly:  _addEmployee?true:false,
                   )
                 ),
               ),
@@ -170,80 +168,76 @@ class _EmployeeState extends State<Employee> {
                 ? Center(child: Text('No Employees Found', style: textStyle14(context,color: Colors.black),),)
                 :  Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                          width: 50,
-                          child: Text('SR', style: textStyle14(context,color: Colors.black))),
-                      Expanded(child: Text('Name', style: textStyle14(context,color: Colors.black))),
-                      Expanded(child: Text('Phone No', style: textStyle14(context,color: Colors.black))),
-                      Expanded(child: Text('Email Id', style: textStyle14(context,color: Colors.black))),
-                      Expanded(child: Text('Department', style: textStyle14(context,color: Colors.black))),
-                      Expanded(child: Text('Workplace', style: textStyle14(context,color: Colors.black))),
-                      Expanded(child: Text('Address', style: textStyle14(context,color: Colors.black))),
-                      Expanded(child: Align(
-                          alignment: Alignment.topRight,
-                          child: Text('Actions', style: textStyle14(context,color: Colors.black)))),
-                    ],
-                  ),
+
+                SizedBox(height: demands.screenHeight*0.02,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(width: demands.screenWidth>600?50:30, child: Text('SR', style: textStyle14(context,color: Colors.black))),
+                    Expanded(child: Text('Name', style: textStyle14(context,color: Colors.black))),
+                    Expanded(child: Text('Phone No', style: textStyle14(context,color: Colors.black))),
+                    demands.screenWidth>600?Expanded(child: Text('Email Id', style: textStyle14(context,color: Colors.black))):SizedBox(),
+                    Expanded(child: Center(child: Text(demands.screenWidth>600?'Department':'Dept.', style: textStyle14(context,color: Colors.black)))),
+                    demands.screenWidth>600? Expanded(child: Text('Workplace', style: textStyle14(context,color: Colors.black))):SizedBox(),
+                   demands.screenWidth>600? Expanded(child: Text('Address', style: textStyle14(context,color: Colors.black))):SizedBox(),
+                    Expanded(child: Align(
+                        alignment: Alignment.topRight,
+                        child: Text('Actions', style: textStyle14(context,color: Colors.black)))),
+                  ],
                 ),
+                SizedBox(height: demands.screenHeight*0.02,),
+
                 Expanded( // Prevents overflow issue
                   child: ListView.builder(
-                    padding: EdgeInsets.all(10),
                     itemCount: filteredList.length,
                     itemBuilder: (context, index) {
                       var srNumber = index+1;
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                                width: 50,
-                                child: Text(srNumber.toString(), style: textStyle14(context,fontWeight: FontWeight.w400))),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                              width: demands.screenWidth>600?50:30,
+                              child: Text(srNumber.toString(), style: textStyle14(context,fontWeight: FontWeight.w400))),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(filteredList[index], style: textStyle14(context)),
+                                Text('Role: Flutter Developer', style: textStyle12(context,color: Colors.black54)),
+                              ],
+                            ),
+                          ),
+                          Expanded(child: Text('898920777$index', style: textStyle14(context,fontWeight: FontWeight.w400),textAlign: TextAlign.justify,)),
+                          demands.screenWidth>600? Expanded(child: Text('Akshay$index@gmail.com', style: textStyle14(context,fontWeight: FontWeight.w400))):SizedBox(),
+                          Expanded(child: Center(child: Text('IT', style: textStyle14(context,fontWeight: FontWeight.w400)))),
+                          demands.screenWidth>600? Expanded(child: Text('Head Office', style: textStyle14(context,fontWeight: FontWeight.w400))):SizedBox(),
+                          demands.screenWidth>600? Expanded(child: Text('Baliari Road,Waidhan, Singrauli, MP', style: textStyle14(context,fontWeight: FontWeight.w400))):SizedBox(),
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              child: ToggleButtons(
+                                borderColor: Colors.transparent,
+                                selectedBorderColor: Colors.transparent,
+                                fillColor: Colors.transparent,
+                                splashColor: Colors.transparent,
+                                isSelected: [isSelectedList[index]], // Set state per row
+                                onPressed: (int btnIndex) {
+                                  setState(() {
+                                    isSelectedList[index] = !isSelectedList[index]; // Toggle ON/OFF
+                                  });
+                                },
                                 children: [
-                                  Text(filteredList[index], style: textStyle14(context,fontWeight: FontWeight.w600)),
-                                  Text('Role: Flutter Developer', style: textStyle12(context,color: Colors.grey)),
+                                  Icon(
+                                    isSelectedList[index] ? Icons.toggle_on : Icons.toggle_off,
+                                    size: 35,
+                                    color: isSelectedList[index] ? Colors.black : Colors.grey,
+                                  ),
                                 ],
                               ),
                             ),
-                            Expanded(child: Text('+91 898920777$index', style: textStyle14(context,fontWeight: FontWeight.w400))),
-                            Expanded(child: Text('Akshay$index@gmail.com', style: textStyle14(context,fontWeight: FontWeight.w400))),
-                            Expanded(child: Text('         ${'IT'}', style: textStyle14(context,fontWeight: FontWeight.w400))),
-                            Expanded(child: Text('Workplace', style: textStyle14(context,fontWeight: FontWeight.w400))),
-                            Expanded(child: Text('Baliari Road,Waidhan, Singrauli, MP', style: textStyle14(context,fontWeight: FontWeight.w400))),
-                            Expanded(
-                              child: Align(
-                                alignment: Alignment.topRight,
-                                child: ToggleButtons(
-                                  borderColor: Colors.transparent,
-                                  selectedBorderColor: Colors.transparent,
-                                  fillColor: Colors.transparent,
-                                  splashColor: Colors.transparent,
-                                  isSelected: [isSelectedList[index]], // Set state per row
-                                  onPressed: (int btnIndex) {
-                                    setState(() {
-                                      isSelectedList[index] = !isSelectedList[index]; // Toggle ON/OFF
-                                    });
-                                  },
-                                  children: [
-                                    Icon(
-                                      isSelectedList[index] ? Icons.toggle_on : Icons.toggle_off,
-                                      size: 30,
-                                      color: isSelectedList[index] ? Colors.blue : Colors.grey,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       );
                     },
                   ),

@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ftfl_dashboard/app_widget/custom_container.dart';
 import 'package:ftfl_dashboard/app_widget/custom_hw.dart';
-import '../../app_widget/custom_colors.dart';
 import '../../app_widget/custom_textstyle.dart';
 import '../../app_widget/dimands.dart';
 import '../../core/theme.dart';
@@ -22,8 +21,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    Employee(),
     Dashboard(),
+    Employee(),
   ];
 
   void _onMenuTap(int index) {
@@ -47,10 +46,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
         backgroundColor: Colors.white,
         shape: UnderlineInputBorder(borderSide: BorderSide(color: customColor.borderColor, width: 0.5)),
         title: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Text("FTFL Technology", style: textStyle20(context,color: Colors.blue.shade900)),
+          padding:  EdgeInsets.only(left: demands.screenWidth > 600 ?demands.screenWidth*0.02:0),
+          child: Text("FTFL Technology", style: textStyle18(context,color: Colors.blue.shade900)),
         ),
-        actions: [
+        actions:demands.screenWidth > 600 ?
+        [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -69,11 +69,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
             backgroundImage: AssetImage('assets/images/akshay.jpg'),
           ),
           50.width
-        ],
+        ]:[],
       ),
 
       ///  CustomDrawer
-      drawer: demands.screenWidth > 600 ? null : CustomDrawer(),
+
+      drawer: demands.screenWidth > 600 ? null : CustomDrawer(selectedIndex: _selectedIndex,onMenuTap: _onMenuTap,), // pass _screens index
 
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,6 +91,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child:  Column(
                 children: [
 
+                  30.height,
                   /// Dashboard
                   ListTile(
                     leading: Icon(Icons.dashboard),

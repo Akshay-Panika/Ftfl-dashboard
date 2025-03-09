@@ -7,6 +7,7 @@ class CustomTextFormField extends StatelessWidget {
   final IconData? suffixIcon;
   final bool obscureText;
   final bool showBorder;
+  final bool readOnly;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final TextInputType keyboardType;
@@ -30,6 +31,7 @@ class CustomTextFormField extends StatelessWidget {
     this.borderColor= Colors.grey,
     this.borderRadius = 0.0,
     this.showBorder = true,
+    this.readOnly = false,
     this.hintStyleColor,
     this.onChanged,
   });
@@ -42,6 +44,7 @@ class CustomTextFormField extends StatelessWidget {
       validator: validator,
       keyboardType: keyboardType,
       onChanged: onChanged,
+      readOnly: readOnly ,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: textStyle14(context, color: hintStyleColor??  Colors.grey),

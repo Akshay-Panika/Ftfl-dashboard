@@ -33,11 +33,8 @@ class Dashboard extends StatelessWidget {
                 child: Column(
                   children: [
                     20.height,
-                    Wrap(
-                      alignment: WrapAlignment.spaceBetween,
-                      runAlignment: WrapAlignment.spaceBetween,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      spacing: 60,
+                    Row(
+                      mainAxisAlignment: demands.screenWidth > 600 ? MainAxisAlignment.spaceAround:MainAxisAlignment.spaceAround,
                       children: [
                         _buildCard(demands,context, label: 'Total Employee', value: '00'),
                         _buildCard(demands, context, label: 'In Office', value: '00'),
@@ -61,6 +58,7 @@ class Dashboard extends StatelessWidget {
 
               /// ClockWidget
               ClockWidget(),
+              demands.screenWidth>600?20.height:10.height
             ],
           ),
         )
@@ -75,16 +73,16 @@ Widget _buildCard(Demands demands,BuildContext context,{String? label, String? v
       bRadius: demands.screenHeight*0.01,
       // width: demands.screenWidth > 600 ? demands.screenWidth*0.25:double.infinity,
       hMargin: demands.screenWidth*0.01, vMargin: demands.screenWidth*0.01,
-      vPadding: demands.screenWidth*0.01,
-      hPadding: demands.screenWidth*0.025,
+      vPadding: demands.screenWidth*0.005,
+      hPadding: demands.screenWidth >600 ? demands.screenWidth*0.015:demands.screenWidth*0.03,
       borderColor: customColor.borderColor,
       shadowColor: Colors.transparent,
       onTap: onTap,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(value!, style: textStyle16(context),),
-          Text(label!, style: textStyle14(context),),
+          Text(value!, style: textStyle14(context),),
+          Text(label!, style: textStyle12(context),),
         ],
       ));
 }
