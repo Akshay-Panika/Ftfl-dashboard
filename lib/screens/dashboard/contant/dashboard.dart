@@ -34,6 +34,7 @@ class Dashboard extends StatelessWidget {
                 child: Column(
                   children: [
 
+                    10.height,
                     Row(
                       mainAxisAlignment: demands.screenWidth > 600 ? MainAxisAlignment.spaceAround:MainAxisAlignment.spaceAround,
                       children: [
@@ -42,7 +43,7 @@ class Dashboard extends StatelessWidget {
                         _buildCard(demands, context, label: 'Out Office', value: '00'),
                       ],
                     ),
-                    10.height,
+                    20.height,
                     /// Attendance List
                     Expanded(child: AttendanceList(),),
                   ],
@@ -50,7 +51,7 @@ class Dashboard extends StatelessWidget {
               ),
 
               /// ClockWidget
-              demands.screenWidth>600?  ClockWidget():10.height
+              demands.screenWidth>600?  ClockWidget():5.height
             ],
           ),
         )

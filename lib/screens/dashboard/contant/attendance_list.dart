@@ -43,38 +43,47 @@ class _AttendanceListState extends State<AttendanceList> {
     return Column(
       children: [
         /// Search Bar, Filter,
-        customContainer(
-          bRadius: demands.screenHeight*0.01,
-          hMargin: demands.screenWidth*0.01,
-          hPadding: demands.screenWidth*0.025,
-          height:demands.screenHeight*0.05,
-          borderColor: customColor.borderColor,
-          shadowColor: Colors.transparent,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                 child: CustomTextFormField(
-                   hintText: 'Search employee',
-                   keyboardType: TextInputType.text,
-                   showBorder: false,
-                   prefixIcon: CupertinoIcons.search,
-                   controller: _searchController,
-                   onChanged: _filterEmployees,
-                   readOnly:  _addEmployee?true:false,
-                 ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: customContainer(
+                bRadius: demands.screenHeight*0.01,
+                hMargin: demands.screenWidth*0.01,
+                hPadding: demands.screenWidth*0.025,
+                height:demands.screenHeight*0.05,
+                borderColor: customColor.borderColor,
+                shadowColor: Colors.transparent,
+                child: CustomTextFormField(
+                  hintText: 'Search employee',
+                  keyboardType: TextInputType.text,
+                  showBorder: false,
+                  suffixIcon: CupertinoIcons.search,
+                  controller: _searchController,
+                  onChanged: _filterEmployees,
+                  readOnly:  _addEmployee?true:false,
+                ),
               ),
-              SizedBox(width: demands.screenWidth*0.02,),
-              Row(
+            ),
+            customContainer(
+              bRadius: demands.screenHeight*0.01,
+              hMargin: demands.screenWidth*0.01,
+              hPadding: demands.screenWidth*0.025,
+              height:demands.screenHeight*0.05,
+              borderColor: customColor.borderColor,
+              shadowColor: Colors.transparent,
+              child: Row(
                 children: [
                   Padding(padding: const EdgeInsets.only(right: 8.0), child: Icon(Icons.filter_alt_sharp, size: 15),),
                   Text("Filter", style: textStyle12(context,)),
                 ],
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
+
+        SizedBox(height: demands.screenWidth>600?demands.screenHeight*0.0:demands.screenHeight*0.01,),
         Expanded(
           child: customContainer(
             bRadius: demands.screenHeight*0.01,
