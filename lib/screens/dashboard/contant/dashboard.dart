@@ -7,6 +7,7 @@ import '../../../app_widget/custom_container.dart';
 import '../../../app_widget/custom_textstyle.dart';
 import '../../../core/theme.dart';
 import '../widget/clock_view.dart';
+import 'attendance_list.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -32,7 +33,7 @@ class Dashboard extends StatelessWidget {
               Expanded(
                 child: Column(
                   children: [
-                    20.height,
+
                     Row(
                       mainAxisAlignment: demands.screenWidth > 600 ? MainAxisAlignment.spaceAround:MainAxisAlignment.spaceAround,
                       children: [
@@ -41,24 +42,15 @@ class Dashboard extends StatelessWidget {
                         _buildCard(demands, context, label: 'Out Office', value: '00'),
                       ],
                     ),
-
-                    Expanded(
-                      child: customContainer(
-                        bRadius: demands.screenHeight*0.01,
-                        hMargin: demands.screenWidth*0.01, vMargin: demands.screenWidth*0.01,
-                        vPadding: demands.screenWidth*0.01,
-                        hPadding: demands.screenWidth*0.025,
-                        borderColor: customColor.borderColor,
-                        shadowColor: Colors.transparent,
-                      ),
-                    ),
+                    10.height,
+                    /// Attendance List
+                    Expanded(child: AttendanceList(),),
                   ],
                 ),
               ),
 
               /// ClockWidget
-              ClockWidget(),
-              demands.screenWidth>600?20.height:10.height
+              demands.screenWidth>600?  ClockWidget():10.height
             ],
           ),
         )

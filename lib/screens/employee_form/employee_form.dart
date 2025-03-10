@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ftfl_dashboard/app_widget/custom_hw.dart';
+import 'package:ftfl_dashboard/screens/employee_form/widget/image_picker.dart';
 import 'package:intl/intl.dart';
 import '../../app_widget/custom_container.dart';
 import '../../app_widget/custom_textstyle.dart';
@@ -98,14 +99,8 @@ class _EmployeeFormState extends State<EmployeeForm> {
                        ],
                      ),
                    ),
-                   customContainer(
-                     bRadius: 15,
-                     containerColor: Colors.grey,
-                     child: Icon(Icons.person, color: Colors.white,),
-                     height: demands.screenWidth>600?demands.screenWidth*0.4:demands.screenHeight*0.4,
-                     width: demands.screenWidth>600?demands.screenWidth*0.05:demands.screenWidth*0.18,
-                     hMargin: demands.screenWidth>600?demands.screenWidth*0.02:demands.screenWidth*0.05,
-                   )
+                  /// Image picker
+                   ImagePickerForWeb()
                  ],
                ),
              ),

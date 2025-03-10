@@ -192,52 +192,55 @@ class _EmployeeState extends State<Employee> {
                     itemCount: filteredList.length,
                     itemBuilder: (context, index) {
                       var srNumber = index+1;
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                              width: demands.screenWidth>600?50:30,
-                              child: Text(srNumber.toString(), style: textStyle14(context,fontWeight: FontWeight.w400))),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(filteredList[index], style: textStyle14(context)),
-                                Text('Role: Flutter Developer', style: textStyle12(context,color: Colors.black54)),
-                              ],
-                            ),
-                          ),
-                          Expanded(child: Text('898920777$index', style: textStyle14(context,fontWeight: FontWeight.w400),textAlign: TextAlign.justify,)),
-                          demands.screenWidth>600? Expanded(child: Text('Akshay$index@gmail.com', style: textStyle14(context,fontWeight: FontWeight.w400))):SizedBox(),
-                          Expanded(child: Center(child: Text('IT', style: textStyle14(context,fontWeight: FontWeight.w400)))),
-                          demands.screenWidth>600? Expanded(child: Text('Head Office', style: textStyle14(context,fontWeight: FontWeight.w400))):SizedBox(),
-                          demands.screenWidth>600? Expanded(child: Text('Baliari Road,Waidhan, Singrauli, MP', style: textStyle14(context,fontWeight: FontWeight.w400))):SizedBox(),
-                          Expanded(
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: ToggleButtons(
-                                borderColor: Colors.transparent,
-                                selectedBorderColor: Colors.transparent,
-                                fillColor: Colors.transparent,
-                                splashColor: Colors.transparent,
-                                isSelected: [isSelectedList[index]], // Set state per row
-                                onPressed: (int btnIndex) {
-                                  setState(() {
-                                    isSelectedList[index] = !isSelectedList[index]; // Toggle ON/OFF
-                                  });
-                                },
+                      return Padding(
+                        padding:  EdgeInsets.only(bottom: demands.screenHeight*0.02),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                                width: demands.screenWidth>600?50:30,
+                                child: Text(srNumber.toString(), style: textStyle14(context,fontWeight: FontWeight.w400))),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Icon(
-                                    isSelectedList[index] ? Icons.toggle_on : Icons.toggle_off,
-                                    size: 35,
-                                    color: isSelectedList[index] ? Colors.black : Colors.grey,
-                                  ),
+                                  Text(filteredList[index], style: textStyle14(context)),
+                                  Text('Role: Flutter Developer', style: textStyle12(context,color: Colors.black54)),
                                 ],
                               ),
                             ),
-                          ),
-                        ],
+                            Expanded(child: Text('898920777$index', style: textStyle14(context,fontWeight: FontWeight.w400),textAlign: TextAlign.justify,)),
+                            demands.screenWidth>600? Expanded(child: Text('Akshay$index@gmail.com', style: textStyle14(context,fontWeight: FontWeight.w400))):SizedBox(),
+                            Expanded(child: Center(child: Text('IT', style: textStyle14(context,fontWeight: FontWeight.w400)))),
+                            demands.screenWidth>600? Expanded(child: Text('Head Office', style: textStyle14(context,fontWeight: FontWeight.w400))):SizedBox(),
+                            demands.screenWidth>600? Expanded(child: Text('Baliari Road,Waidhan, Singrauli, MP', style: textStyle14(context,fontWeight: FontWeight.w400))):SizedBox(),
+                            Expanded(
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: ToggleButtons(
+                                  borderColor: Colors.transparent,
+                                  selectedBorderColor: Colors.transparent,
+                                  fillColor: Colors.transparent,
+                                  splashColor: Colors.transparent,
+                                  isSelected: [isSelectedList[index]], // Set state per row
+                                  onPressed: (int btnIndex) {
+                                    setState(() {
+                                      isSelectedList[index] = !isSelectedList[index]; // Toggle ON/OFF
+                                    });
+                                  },
+                                  children: [
+                                    Icon(
+                                      isSelectedList[index] ? Icons.toggle_on : Icons.toggle_off,
+                                      size: 35,
+                                      color: isSelectedList[index] ? Colors.black : Colors.grey,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       );
                     },
                   ),

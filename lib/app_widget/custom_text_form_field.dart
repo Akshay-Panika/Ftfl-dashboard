@@ -47,15 +47,15 @@ class CustomTextFormField extends StatelessWidget {
       readOnly: readOnly ,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: textStyle14(context, color: hintStyleColor??  Colors.grey),
+        hintStyle: textStyle12(context, color: hintStyleColor??  Colors.black),
         prefixIcon: prefixIcon != null ? Icon(prefixIcon,color: Colors.grey,) : null,
         suffixIcon: suffixIcon != null ? InkWell(
             onTap: visibility,
             child: Icon(suffixIcon, color: Colors.grey,)) : null,
-         border:showBorder ? UnderlineInputBorder():InputBorder.none,
-        enabledBorder:showBorder ? UnderlineInputBorder():InputBorder.none,
-        focusedBorder:showBorder ? UnderlineInputBorder():InputBorder.none,
-        // focusedBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(borderRadius), borderSide: BorderSide(color: borderColor, width: 1),
+         border:showBorder ? UnderlineInputBorder(borderSide: BorderSide(color: Colors.black54)):InputBorder.none,
+        enabledBorder:showBorder ? UnderlineInputBorder(borderSide: BorderSide(color: Colors.black54)):InputBorder.none,
+        focusedBorder:showBorder ? UnderlineInputBorder(borderSide: BorderSide(color: Colors.black54)):InputBorder.none,
+         // focusedBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(borderRadius), borderSide: BorderSide(color: borderColor, width: 1),
         ),
     );
   }
